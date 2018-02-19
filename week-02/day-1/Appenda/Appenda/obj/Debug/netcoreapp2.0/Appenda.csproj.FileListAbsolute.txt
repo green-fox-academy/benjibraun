@@ -1,0 +1,11 @@
+C:\Benji\greenfox\week2\day1\Appenda\Appenda\obj\Debug\netcoreapp2.0\Appenda.csprojResolveAssemblyReference.cache
+C:\Benji\greenfox\week2\day1\Appenda\Appenda\obj\Debug\netcoreapp2.0\Appenda.csproj.CoreCompileInputs.cache
+C:\Benji\greenfox\week2\day1\Appenda\Appenda\obj\Debug\netcoreapp2.0\Appenda.AssemblyInfoInputs.cache
+C:\Benji\greenfox\week2\day1\Appenda\Appenda\obj\Debug\netcoreapp2.0\Appenda.AssemblyInfo.cs
+C:\Benji\greenfox\week2\day1\Appenda\Appenda\bin\Debug\netcoreapp2.0\Appenda.deps.json
+C:\Benji\greenfox\week2\day1\Appenda\Appenda\bin\Debug\netcoreapp2.0\Appenda.runtimeconfig.json
+C:\Benji\greenfox\week2\day1\Appenda\Appenda\bin\Debug\netcoreapp2.0\Appenda.runtimeconfig.dev.json
+C:\Benji\greenfox\week2\day1\Appenda\Appenda\bin\Debug\netcoreapp2.0\Appenda.dll
+C:\Benji\greenfox\week2\day1\Appenda\Appenda\bin\Debug\netcoreapp2.0\Appenda.pdb
+C:\Benji\greenfox\week2\day1\Appenda\Appenda\obj\Debug\netcoreapp2.0\Appenda.dll
+C:\Benji\greenfox\week2\day1\Appenda\Appenda\obj\Debug\netcoreapp2.0\Appenda.pdb

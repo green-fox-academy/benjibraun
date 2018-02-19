@@ -1,0 +1,11 @@
+C:\Benji\greenfox\week2\day1\Matrix\Matrix\bin\Debug\netcoreapp2.0\Matrix.deps.json
+C:\Benji\greenfox\week2\day1\Matrix\Matrix\bin\Debug\netcoreapp2.0\Matrix.runtimeconfig.json
+C:\Benji\greenfox\week2\day1\Matrix\Matrix\bin\Debug\netcoreapp2.0\Matrix.runtimeconfig.dev.json
+C:\Benji\greenfox\week2\day1\Matrix\Matrix\bin\Debug\netcoreapp2.0\Matrix.dll
+C:\Benji\greenfox\week2\day1\Matrix\Matrix\bin\Debug\netcoreapp2.0\Matrix.pdb
+C:\Benji\greenfox\week2\day1\Matrix\Matrix\obj\Debug\netcoreapp2.0\Matrix.csprojResolveAssemblyReference.cache
+C:\Benji\greenfox\week2\day1\Matrix\Matrix\obj\Debug\netcoreapp2.0\Matrix.csproj.CoreCompileInputs.cache
+C:\Benji\greenfox\week2\day1\Matrix\Matrix\obj\Debug\netcoreapp2.0\Matrix.AssemblyInfoInputs.cache
+C:\Benji\greenfox\week2\day1\Matrix\Matrix\obj\Debug\netcoreapp2.0\Matrix.AssemblyInfo.cs
+C:\Benji\greenfox\week2\day1\Matrix\Matrix\obj\Debug\netcoreapp2.0\Matrix.dll
+C:\Benji\greenfox\week2\day1\Matrix\Matrix\obj\Debug\netcoreapp2.0\Matrix.pdb

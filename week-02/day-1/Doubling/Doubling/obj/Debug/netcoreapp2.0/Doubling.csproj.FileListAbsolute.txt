@@ -1,0 +1,11 @@
+C:\Benji\greenfox\week2\day1\Doubling\Doubling\obj\Debug\netcoreapp2.0\Doubling.csprojResolveAssemblyReference.cache
+C:\Benji\greenfox\week2\day1\Doubling\Doubling\obj\Debug\netcoreapp2.0\Doubling.csproj.CoreCompileInputs.cache
+C:\Benji\greenfox\week2\day1\Doubling\Doubling\obj\Debug\netcoreapp2.0\Doubling.AssemblyInfoInputs.cache
+C:\Benji\greenfox\week2\day1\Doubling\Doubling\obj\Debug\netcoreapp2.0\Doubling.AssemblyInfo.cs
+C:\Benji\greenfox\week2\day1\Doubling\Doubling\bin\Debug\netcoreapp2.0\Doubling.deps.json
+C:\Benji\greenfox\week2\day1\Doubling\Doubling\bin\Debug\netcoreapp2.0\Doubling.runtimeconfig.json
+C:\Benji\greenfox\week2\day1\Doubling\Doubling\bin\Debug\netcoreapp2.0\Doubling.runtimeconfig.dev.json
+C:\Benji\greenfox\week2\day1\Doubling\Doubling\bin\Debug\netcoreapp2.0\Doubling.dll
+C:\Benji\greenfox\week2\day1\Doubling\Doubling\bin\Debug\netcoreapp2.0\Doubling.pdb
+C:\Benji\greenfox\week2\day1\Doubling\Doubling\obj\Debug\netcoreapp2.0\Doubling.dll
+C:\Benji\greenfox\week2\day1\Doubling\Doubling\obj\Debug\netcoreapp2.0\Doubling.pdb

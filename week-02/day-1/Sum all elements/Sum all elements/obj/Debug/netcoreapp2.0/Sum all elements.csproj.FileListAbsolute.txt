@@ -1,0 +1,11 @@
+C:\Benji\greenfox\week2\day1\Sum all elements\Sum all elements\bin\Debug\netcoreapp2.0\Sum all elements.deps.json
+C:\Benji\greenfox\week2\day1\Sum all elements\Sum all elements\bin\Debug\netcoreapp2.0\Sum all elements.runtimeconfig.json
+C:\Benji\greenfox\week2\day1\Sum all elements\Sum all elements\bin\Debug\netcoreapp2.0\Sum all elements.runtimeconfig.dev.json
+C:\Benji\greenfox\week2\day1\Sum all elements\Sum all elements\bin\Debug\netcoreapp2.0\Sum all elements.dll
+C:\Benji\greenfox\week2\day1\Sum all elements\Sum all elements\bin\Debug\netcoreapp2.0\Sum all elements.pdb
+C:\Benji\greenfox\week2\day1\Sum all elements\Sum all elements\obj\Debug\netcoreapp2.0\Sum all elements.csprojResolveAssemblyReference.cache
+C:\Benji\greenfox\week2\day1\Sum all elements\Sum all elements\obj\Debug\netcoreapp2.0\Sum all elements.csproj.CoreCompileInputs.cache
+C:\Benji\greenfox\week2\day1\Sum all elements\Sum all elements\obj\Debug\netcoreapp2.0\Sum all elements.AssemblyInfoInputs.cache
+C:\Benji\greenfox\week2\day1\Sum all elements\Sum all elements\obj\Debug\netcoreapp2.0\Sum all elements.AssemblyInfo.cs
+C:\Benji\greenfox\week2\day1\Sum all elements\Sum all elements\obj\Debug\netcoreapp2.0\Sum all elements.dll
+C:\Benji\greenfox\week2\day1\Sum all elements\Sum all elements\obj\Debug\netcoreapp2.0\Sum all elements.pdb

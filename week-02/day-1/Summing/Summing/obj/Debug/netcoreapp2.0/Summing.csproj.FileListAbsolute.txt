@@ -1,0 +1,11 @@
+C:\Benji\greenfox\week2\day1\Summing\Summing\bin\Debug\netcoreapp2.0\Summing.deps.json
+C:\Benji\greenfox\week2\day1\Summing\Summing\bin\Debug\netcoreapp2.0\Summing.runtimeconfig.json
+C:\Benji\greenfox\week2\day1\Summing\Summing\bin\Debug\netcoreapp2.0\Summing.runtimeconfig.dev.json
+C:\Benji\greenfox\week2\day1\Summing\Summing\bin\Debug\netcoreapp2.0\Summing.dll
+C:\Benji\greenfox\week2\day1\Summing\Summing\bin\Debug\netcoreapp2.0\Summing.pdb
+C:\Benji\greenfox\week2\day1\Summing\Summing\obj\Debug\netcoreapp2.0\Summing.csprojResolveAssemblyReference.cache
+C:\Benji\greenfox\week2\day1\Summing\Summing\obj\Debug\netcoreapp2.0\Summing.csproj.CoreCompileInputs.cache
+C:\Benji\greenfox\week2\day1\Summing\Summing\obj\Debug\netcoreapp2.0\Summing.AssemblyInfoInputs.cache
+C:\Benji\greenfox\week2\day1\Summing\Summing\obj\Debug\netcoreapp2.0\Summing.AssemblyInfo.cs
+C:\Benji\greenfox\week2\day1\Summing\Summing\obj\Debug\netcoreapp2.0\Summing.dll
+C:\Benji\greenfox\week2\day1\Summing\Summing\obj\Debug\netcoreapp2.0\Summing.pdb
