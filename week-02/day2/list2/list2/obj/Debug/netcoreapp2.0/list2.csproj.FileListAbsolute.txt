@@ -1,0 +1,11 @@
+C:\Benji\greenfox\week2\day2\list2\list2\obj\Debug\netcoreapp2.0\list2.csprojResolveAssemblyReference.cache
+C:\Benji\greenfox\week2\day2\list2\list2\obj\Debug\netcoreapp2.0\list2.csproj.CoreCompileInputs.cache
+C:\Benji\greenfox\week2\day2\list2\list2\obj\Debug\netcoreapp2.0\list2.AssemblyInfoInputs.cache
+C:\Benji\greenfox\week2\day2\list2\list2\obj\Debug\netcoreapp2.0\list2.AssemblyInfo.cs
+C:\Benji\greenfox\week2\day2\list2\list2\bin\Debug\netcoreapp2.0\list2.deps.json
+C:\Benji\greenfox\week2\day2\list2\list2\bin\Debug\netcoreapp2.0\list2.runtimeconfig.json
+C:\Benji\greenfox\week2\day2\list2\list2\bin\Debug\netcoreapp2.0\list2.runtimeconfig.dev.json
+C:\Benji\greenfox\week2\day2\list2\list2\bin\Debug\netcoreapp2.0\list2.dll
+C:\Benji\greenfox\week2\day2\list2\list2\bin\Debug\netcoreapp2.0\list2.pdb
+C:\Benji\greenfox\week2\day2\list2\list2\obj\Debug\netcoreapp2.0\list2.dll
+C:\Benji\greenfox\week2\day2\list2\list2\obj\Debug\netcoreapp2.0\list2.pdb

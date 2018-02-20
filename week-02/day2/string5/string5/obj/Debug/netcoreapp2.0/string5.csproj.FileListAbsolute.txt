@@ -1,0 +1,10 @@
+C:\Benji\greenfox\week2\day2\string5\string5\bin\Debug\netcoreapp2.0\string5.deps.json
+C:\Benji\greenfox\week2\day2\string5\string5\bin\Debug\netcoreapp2.0\string5.runtimeconfig.json
+C:\Benji\greenfox\week2\day2\string5\string5\bin\Debug\netcoreapp2.0\string5.runtimeconfig.dev.json
+C:\Benji\greenfox\week2\day2\string5\string5\bin\Debug\netcoreapp2.0\string5.dll
+C:\Benji\greenfox\week2\day2\string5\string5\bin\Debug\netcoreapp2.0\string5.pdb
+C:\Benji\greenfox\week2\day2\string5\string5\obj\Debug\netcoreapp2.0\string5.csproj.CoreCompileInputs.cache
+C:\Benji\greenfox\week2\day2\string5\string5\obj\Debug\netcoreapp2.0\string5.AssemblyInfoInputs.cache
+C:\Benji\greenfox\week2\day2\string5\string5\obj\Debug\netcoreapp2.0\string5.AssemblyInfo.cs
+C:\Benji\greenfox\week2\day2\string5\string5\obj\Debug\netcoreapp2.0\string5.dll
+C:\Benji\greenfox\week2\day2\string5\string5\obj\Debug\netcoreapp2.0\string5.pdb

@@ -1,0 +1,11 @@
+C:\Benji\greenfox\week2\day2\dictionary2\dictionary2\obj\Debug\netcoreapp2.0\dictionary2.csprojResolveAssemblyReference.cache
+C:\Benji\greenfox\week2\day2\dictionary2\dictionary2\obj\Debug\netcoreapp2.0\dictionary2.csproj.CoreCompileInputs.cache
+C:\Benji\greenfox\week2\day2\dictionary2\dictionary2\obj\Debug\netcoreapp2.0\dictionary2.AssemblyInfoInputs.cache
+C:\Benji\greenfox\week2\day2\dictionary2\dictionary2\obj\Debug\netcoreapp2.0\dictionary2.AssemblyInfo.cs
+C:\Benji\greenfox\week2\day2\dictionary2\dictionary2\bin\Debug\netcoreapp2.0\dictionary2.deps.json
+C:\Benji\greenfox\week2\day2\dictionary2\dictionary2\bin\Debug\netcoreapp2.0\dictionary2.runtimeconfig.json
+C:\Benji\greenfox\week2\day2\dictionary2\dictionary2\bin\Debug\netcoreapp2.0\dictionary2.runtimeconfig.dev.json
+C:\Benji\greenfox\week2\day2\dictionary2\dictionary2\bin\Debug\netcoreapp2.0\dictionary2.dll
+C:\Benji\greenfox\week2\day2\dictionary2\dictionary2\bin\Debug\netcoreapp2.0\dictionary2.pdb
+C:\Benji\greenfox\week2\day2\dictionary2\dictionary2\obj\Debug\netcoreapp2.0\dictionary2.dll
+C:\Benji\greenfox\week2\day2\dictionary2\dictionary2\obj\Debug\netcoreapp2.0\dictionary2.pdb
