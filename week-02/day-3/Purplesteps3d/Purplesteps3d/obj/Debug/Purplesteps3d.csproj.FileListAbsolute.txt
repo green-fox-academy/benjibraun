@@ -1,0 +1,15 @@
+C:\Benji\greenfox\week2\day3\Purplesteps3d\Purplesteps3d\obj\Debug\Purplesteps3d.csprojResolveAssemblyReference.cache
+C:\Benji\greenfox\week2\day3\Purplesteps3d\Purplesteps3d\obj\Debug\MainWindow.g.cs
+C:\Benji\greenfox\week2\day3\Purplesteps3d\Purplesteps3d\obj\Debug\App.g.cs
+C:\Benji\greenfox\week2\day3\Purplesteps3d\Purplesteps3d\obj\Debug\Purplesteps3d_MarkupCompile.cache
+C:\Benji\greenfox\week2\day3\Purplesteps3d\Purplesteps3d\obj\Debug\Purplesteps3d_MarkupCompile.lref
+C:\Benji\greenfox\week2\day3\Purplesteps3d\Purplesteps3d\bin\Debug\Purplesteps3d.exe.config
+C:\Benji\greenfox\week2\day3\Purplesteps3d\Purplesteps3d\bin\Debug\Purplesteps3d.exe
+C:\Benji\greenfox\week2\day3\Purplesteps3d\Purplesteps3d\bin\Debug\Purplesteps3d.pdb
+C:\Benji\greenfox\week2\day3\Purplesteps3d\Purplesteps3d\obj\Debug\MainWindow.baml
+C:\Benji\greenfox\week2\day3\Purplesteps3d\Purplesteps3d\obj\Debug\Purplesteps3d.g.resources
+C:\Benji\greenfox\week2\day3\Purplesteps3d\Purplesteps3d\obj\Debug\Purplesteps3d.Properties.Resources.resources
+C:\Benji\greenfox\week2\day3\Purplesteps3d\Purplesteps3d\obj\Debug\Purplesteps3d.csproj.GenerateResource.Cache
+C:\Benji\greenfox\week2\day3\Purplesteps3d\Purplesteps3d\obj\Debug\Purplesteps3d.csproj.CoreCompileInputs.cache
+C:\Benji\greenfox\week2\day3\Purplesteps3d\Purplesteps3d\obj\Debug\Purplesteps3d.exe
+C:\Benji\greenfox\week2\day3\Purplesteps3d\Purplesteps3d\obj\Debug\Purplesteps3d.pdb

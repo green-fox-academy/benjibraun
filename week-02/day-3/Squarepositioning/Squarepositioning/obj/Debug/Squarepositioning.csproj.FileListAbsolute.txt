@@ -1,0 +1,14 @@
+C:\Benji\greenfox\week2\day3\Squarepositioning\Squarepositioning\bin\Debug\Squarepositioning.exe.config
+C:\Benji\greenfox\week2\day3\Squarepositioning\Squarepositioning\bin\Debug\Squarepositioning.exe
+C:\Benji\greenfox\week2\day3\Squarepositioning\Squarepositioning\bin\Debug\Squarepositioning.pdb
+C:\Benji\greenfox\week2\day3\Squarepositioning\Squarepositioning\obj\Debug\MainWindow.g.cs
+C:\Benji\greenfox\week2\day3\Squarepositioning\Squarepositioning\obj\Debug\App.g.cs
+C:\Benji\greenfox\week2\day3\Squarepositioning\Squarepositioning\obj\Debug\Squarepositioning_MarkupCompile.cache
+C:\Benji\greenfox\week2\day3\Squarepositioning\Squarepositioning\obj\Debug\Squarepositioning_MarkupCompile.lref
+C:\Benji\greenfox\week2\day3\Squarepositioning\Squarepositioning\obj\Debug\MainWindow.baml
+C:\Benji\greenfox\week2\day3\Squarepositioning\Squarepositioning\obj\Debug\Squarepositioning.g.resources
+C:\Benji\greenfox\week2\day3\Squarepositioning\Squarepositioning\obj\Debug\Squarepositioning.Properties.Resources.resources
+C:\Benji\greenfox\week2\day3\Squarepositioning\Squarepositioning\obj\Debug\Squarepositioning.csproj.GenerateResource.Cache
+C:\Benji\greenfox\week2\day3\Squarepositioning\Squarepositioning\obj\Debug\Squarepositioning.csproj.CoreCompileInputs.cache
+C:\Benji\greenfox\week2\day3\Squarepositioning\Squarepositioning\obj\Debug\Squarepositioning.exe
+C:\Benji\greenfox\week2\day3\Squarepositioning\Squarepositioning\obj\Debug\Squarepositioning.pdb

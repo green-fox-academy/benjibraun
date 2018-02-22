@@ -1,0 +1,15 @@
+C:\Benji\greenfox\week2\day3\Connectthedots\Connectthedots\bin\Debug\Connectthedots.exe.config
+C:\Benji\greenfox\week2\day3\Connectthedots\Connectthedots\bin\Debug\Connectthedots.exe
+C:\Benji\greenfox\week2\day3\Connectthedots\Connectthedots\bin\Debug\Connectthedots.pdb
+C:\Benji\greenfox\week2\day3\Connectthedots\Connectthedots\obj\Debug\Connectthedots.csprojResolveAssemblyReference.cache
+C:\Benji\greenfox\week2\day3\Connectthedots\Connectthedots\obj\Debug\MainWindow.g.cs
+C:\Benji\greenfox\week2\day3\Connectthedots\Connectthedots\obj\Debug\App.g.cs
+C:\Benji\greenfox\week2\day3\Connectthedots\Connectthedots\obj\Debug\Connectthedots_MarkupCompile.cache
+C:\Benji\greenfox\week2\day3\Connectthedots\Connectthedots\obj\Debug\Connectthedots_MarkupCompile.lref
+C:\Benji\greenfox\week2\day3\Connectthedots\Connectthedots\obj\Debug\MainWindow.baml
+C:\Benji\greenfox\week2\day3\Connectthedots\Connectthedots\obj\Debug\Connectthedots.g.resources
+C:\Benji\greenfox\week2\day3\Connectthedots\Connectthedots\obj\Debug\Connectthedots.Properties.Resources.resources
+C:\Benji\greenfox\week2\day3\Connectthedots\Connectthedots\obj\Debug\Connectthedots.csproj.GenerateResource.Cache
+C:\Benji\greenfox\week2\day3\Connectthedots\Connectthedots\obj\Debug\Connectthedots.csproj.CoreCompileInputs.cache
+C:\Benji\greenfox\week2\day3\Connectthedots\Connectthedots\obj\Debug\Connectthedots.exe
+C:\Benji\greenfox\week2\day3\Connectthedots\Connectthedots\obj\Debug\Connectthedots.pdb

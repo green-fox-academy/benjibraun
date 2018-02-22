@@ -1,0 +1,15 @@
+C:\Benji\greenfox\week2\day3\Checkerboard\Checkerboard\obj\Debug\MainWindow.g.cs
+C:\Benji\greenfox\week2\day3\Checkerboard\Checkerboard\obj\Debug\App.g.cs
+C:\Benji\greenfox\week2\day3\Checkerboard\Checkerboard\obj\Debug\Checkerboard_MarkupCompile.cache
+C:\Benji\greenfox\week2\day3\Checkerboard\Checkerboard\obj\Debug\Checkerboard_MarkupCompile.lref
+C:\Benji\greenfox\week2\day3\Checkerboard\Checkerboard\bin\Debug\Checkerboard.exe.config
+C:\Benji\greenfox\week2\day3\Checkerboard\Checkerboard\bin\Debug\Checkerboard.exe
+C:\Benji\greenfox\week2\day3\Checkerboard\Checkerboard\bin\Debug\Checkerboard.pdb
+C:\Benji\greenfox\week2\day3\Checkerboard\Checkerboard\obj\Debug\MainWindow.baml
+C:\Benji\greenfox\week2\day3\Checkerboard\Checkerboard\obj\Debug\Checkerboard.g.resources
+C:\Benji\greenfox\week2\day3\Checkerboard\Checkerboard\obj\Debug\Checkerboard.Properties.Resources.resources
+C:\Benji\greenfox\week2\day3\Checkerboard\Checkerboard\obj\Debug\Checkerboard.csproj.GenerateResource.Cache
+C:\Benji\greenfox\week2\day3\Checkerboard\Checkerboard\obj\Debug\Checkerboard.csproj.CoreCompileInputs.cache
+C:\Benji\greenfox\week2\day3\Checkerboard\Checkerboard\obj\Debug\Checkerboard.exe
+C:\Benji\greenfox\week2\day3\Checkerboard\Checkerboard\obj\Debug\Checkerboard.pdb
+C:\Benji\greenfox\week2\day3\Checkerboard\Checkerboard\obj\Debug\Checkerboard.csprojResolveAssemblyReference.cache

@@ -1,0 +1,14 @@
+C:\Benji\greenfox\week2\day3\Diagonals\Diagonals\bin\Debug\Diagonals.exe.config
+C:\Benji\greenfox\week2\day3\Diagonals\Diagonals\bin\Debug\Diagonals.exe
+C:\Benji\greenfox\week2\day3\Diagonals\Diagonals\bin\Debug\Diagonals.pdb
+C:\Benji\greenfox\week2\day3\Diagonals\Diagonals\obj\Debug\MainWindow.g.cs
+C:\Benji\greenfox\week2\day3\Diagonals\Diagonals\obj\Debug\App.g.cs
+C:\Benji\greenfox\week2\day3\Diagonals\Diagonals\obj\Debug\Diagonals_MarkupCompile.cache
+C:\Benji\greenfox\week2\day3\Diagonals\Diagonals\obj\Debug\Diagonals_MarkupCompile.lref
+C:\Benji\greenfox\week2\day3\Diagonals\Diagonals\obj\Debug\MainWindow.baml
+C:\Benji\greenfox\week2\day3\Diagonals\Diagonals\obj\Debug\Diagonals.g.resources
+C:\Benji\greenfox\week2\day3\Diagonals\Diagonals\obj\Debug\Diagonals.Properties.Resources.resources
+C:\Benji\greenfox\week2\day3\Diagonals\Diagonals\obj\Debug\Diagonals.csproj.GenerateResource.Cache
+C:\Benji\greenfox\week2\day3\Diagonals\Diagonals\obj\Debug\Diagonals.csproj.CoreCompileInputs.cache
+C:\Benji\greenfox\week2\day3\Diagonals\Diagonals\obj\Debug\Diagonals.exe
+C:\Benji\greenfox\week2\day3\Diagonals\Diagonals\obj\Debug\Diagonals.pdb

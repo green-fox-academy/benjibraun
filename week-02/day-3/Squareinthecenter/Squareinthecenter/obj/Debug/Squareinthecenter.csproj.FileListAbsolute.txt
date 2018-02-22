@@ -1,0 +1,14 @@
+C:\Benji\greenfox\week2\day3\Squareinthecenter\Squareinthecenter\bin\Debug\Squareinthecenter.exe.config
+C:\Benji\greenfox\week2\day3\Squareinthecenter\Squareinthecenter\bin\Debug\Squareinthecenter.exe
+C:\Benji\greenfox\week2\day3\Squareinthecenter\Squareinthecenter\bin\Debug\Squareinthecenter.pdb
+C:\Benji\greenfox\week2\day3\Squareinthecenter\Squareinthecenter\obj\Debug\MainWindow.g.cs
+C:\Benji\greenfox\week2\day3\Squareinthecenter\Squareinthecenter\obj\Debug\App.g.cs
+C:\Benji\greenfox\week2\day3\Squareinthecenter\Squareinthecenter\obj\Debug\Squareinthecenter_MarkupCompile.cache
+C:\Benji\greenfox\week2\day3\Squareinthecenter\Squareinthecenter\obj\Debug\Squareinthecenter_MarkupCompile.lref
+C:\Benji\greenfox\week2\day3\Squareinthecenter\Squareinthecenter\obj\Debug\MainWindow.baml
+C:\Benji\greenfox\week2\day3\Squareinthecenter\Squareinthecenter\obj\Debug\Squareinthecenter.g.resources
+C:\Benji\greenfox\week2\day3\Squareinthecenter\Squareinthecenter\obj\Debug\Squareinthecenter.Properties.Resources.resources
+C:\Benji\greenfox\week2\day3\Squareinthecenter\Squareinthecenter\obj\Debug\Squareinthecenter.csproj.GenerateResource.Cache
+C:\Benji\greenfox\week2\day3\Squareinthecenter\Squareinthecenter\obj\Debug\Squareinthecenter.csproj.CoreCompileInputs.cache
+C:\Benji\greenfox\week2\day3\Squareinthecenter\Squareinthecenter\obj\Debug\Squareinthecenter.exe
+C:\Benji\greenfox\week2\day3\Squareinthecenter\Squareinthecenter\obj\Debug\Squareinthecenter.pdb

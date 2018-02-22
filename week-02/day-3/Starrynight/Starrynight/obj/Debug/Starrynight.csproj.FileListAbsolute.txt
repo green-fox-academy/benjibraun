@@ -1,0 +1,15 @@
+C:\Benji\greenfox\week2\day3\Starrynight\Starrynight\bin\Debug\Starrynight.exe.config
+C:\Benji\greenfox\week2\day3\Starrynight\Starrynight\bin\Debug\Starrynight.exe
+C:\Benji\greenfox\week2\day3\Starrynight\Starrynight\bin\Debug\Starrynight.pdb
+C:\Benji\greenfox\week2\day3\Starrynight\Starrynight\obj\Debug\MainWindow.g.cs
+C:\Benji\greenfox\week2\day3\Starrynight\Starrynight\obj\Debug\App.g.cs
+C:\Benji\greenfox\week2\day3\Starrynight\Starrynight\obj\Debug\Starrynight_MarkupCompile.cache
+C:\Benji\greenfox\week2\day3\Starrynight\Starrynight\obj\Debug\Starrynight_MarkupCompile.lref
+C:\Benji\greenfox\week2\day3\Starrynight\Starrynight\obj\Debug\MainWindow.baml
+C:\Benji\greenfox\week2\day3\Starrynight\Starrynight\obj\Debug\Starrynight.g.resources
+C:\Benji\greenfox\week2\day3\Starrynight\Starrynight\obj\Debug\Starrynight.Properties.Resources.resources
+C:\Benji\greenfox\week2\day3\Starrynight\Starrynight\obj\Debug\Starrynight.csproj.GenerateResource.Cache
+C:\Benji\greenfox\week2\day3\Starrynight\Starrynight\obj\Debug\Starrynight.csproj.CoreCompileInputs.cache
+C:\Benji\greenfox\week2\day3\Starrynight\Starrynight\obj\Debug\Starrynight.exe
+C:\Benji\greenfox\week2\day3\Starrynight\Starrynight\obj\Debug\Starrynight.pdb
+C:\Benji\greenfox\week2\day3\Starrynight\Starrynight\obj\Debug\Starrynight.csprojResolveAssemblyReference.cache

@@ -1,0 +1,15 @@
+C:\Benji\greenfox\week2\day3\Rainbowboxes\Rainbowboxes\bin\Debug\Rainbowboxes.exe.config
+C:\Benji\greenfox\week2\day3\Rainbowboxes\Rainbowboxes\bin\Debug\Rainbowboxes.exe
+C:\Benji\greenfox\week2\day3\Rainbowboxes\Rainbowboxes\bin\Debug\Rainbowboxes.pdb
+C:\Benji\greenfox\week2\day3\Rainbowboxes\Rainbowboxes\obj\Debug\MainWindow.g.cs
+C:\Benji\greenfox\week2\day3\Rainbowboxes\Rainbowboxes\obj\Debug\App.g.cs
+C:\Benji\greenfox\week2\day3\Rainbowboxes\Rainbowboxes\obj\Debug\Rainbowboxes_MarkupCompile.cache
+C:\Benji\greenfox\week2\day3\Rainbowboxes\Rainbowboxes\obj\Debug\Rainbowboxes_MarkupCompile.lref
+C:\Benji\greenfox\week2\day3\Rainbowboxes\Rainbowboxes\obj\Debug\MainWindow.baml
+C:\Benji\greenfox\week2\day3\Rainbowboxes\Rainbowboxes\obj\Debug\Rainbowboxes.g.resources
+C:\Benji\greenfox\week2\day3\Rainbowboxes\Rainbowboxes\obj\Debug\Rainbowboxes.Properties.Resources.resources
+C:\Benji\greenfox\week2\day3\Rainbowboxes\Rainbowboxes\obj\Debug\Rainbowboxes.csproj.GenerateResource.Cache
+C:\Benji\greenfox\week2\day3\Rainbowboxes\Rainbowboxes\obj\Debug\Rainbowboxes.csproj.CoreCompileInputs.cache
+C:\Benji\greenfox\week2\day3\Rainbowboxes\Rainbowboxes\obj\Debug\Rainbowboxes.exe
+C:\Benji\greenfox\week2\day3\Rainbowboxes\Rainbowboxes\obj\Debug\Rainbowboxes.pdb
+C:\Benji\greenfox\week2\day3\Rainbowboxes\Rainbowboxes\obj\Debug\Rainbowboxes.csprojResolveAssemblyReference.cache

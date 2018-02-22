@@ -1,0 +1,15 @@
+C:\Benji\greenfox\week2\day3\Coloredbox\Coloredbox\obj\Debug\MainWindow.g.cs
+C:\Benji\greenfox\week2\day3\Coloredbox\Coloredbox\obj\Debug\App.g.cs
+C:\Benji\greenfox\week2\day3\Coloredbox\Coloredbox\obj\Debug\Coloredbox_MarkupCompile.cache
+C:\Benji\greenfox\week2\day3\Coloredbox\Coloredbox\obj\Debug\Coloredbox_MarkupCompile.lref
+C:\Benji\greenfox\week2\day3\Coloredbox\Coloredbox\bin\Debug\Coloredbox.exe.config
+C:\Benji\greenfox\week2\day3\Coloredbox\Coloredbox\bin\Debug\Coloredbox.exe
+C:\Benji\greenfox\week2\day3\Coloredbox\Coloredbox\bin\Debug\Coloredbox.pdb
+C:\Benji\greenfox\week2\day3\Coloredbox\Coloredbox\obj\Debug\MainWindow.baml
+C:\Benji\greenfox\week2\day3\Coloredbox\Coloredbox\obj\Debug\Coloredbox.g.resources
+C:\Benji\greenfox\week2\day3\Coloredbox\Coloredbox\obj\Debug\Coloredbox.Properties.Resources.resources
+C:\Benji\greenfox\week2\day3\Coloredbox\Coloredbox\obj\Debug\Coloredbox.csproj.GenerateResource.Cache
+C:\Benji\greenfox\week2\day3\Coloredbox\Coloredbox\obj\Debug\Coloredbox.csproj.CoreCompileInputs.cache
+C:\Benji\greenfox\week2\day3\Coloredbox\Coloredbox\obj\Debug\Coloredbox.exe
+C:\Benji\greenfox\week2\day3\Coloredbox\Coloredbox\obj\Debug\Coloredbox.pdb
+C:\Benji\greenfox\week2\day3\Coloredbox\Coloredbox\obj\Debug\Coloredbox.csprojResolveAssemblyReference.cache

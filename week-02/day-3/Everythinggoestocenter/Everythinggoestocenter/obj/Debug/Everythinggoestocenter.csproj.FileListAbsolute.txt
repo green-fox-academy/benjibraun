@@ -1,0 +1,15 @@
+C:\Benji\greenfox\week2\day3\Everythinggoestocenter\Everythinggoestocenter\obj\Debug\Everythinggoestocenter.csprojResolveAssemblyReference.cache
+C:\Benji\greenfox\week2\day3\Everythinggoestocenter\Everythinggoestocenter\obj\Debug\MainWindow.g.cs
+C:\Benji\greenfox\week2\day3\Everythinggoestocenter\Everythinggoestocenter\obj\Debug\App.g.cs
+C:\Benji\greenfox\week2\day3\Everythinggoestocenter\Everythinggoestocenter\obj\Debug\Everythinggoestocenter_MarkupCompile.cache
+C:\Benji\greenfox\week2\day3\Everythinggoestocenter\Everythinggoestocenter\obj\Debug\Everythinggoestocenter_MarkupCompile.lref
+C:\Benji\greenfox\week2\day3\Everythinggoestocenter\Everythinggoestocenter\bin\Debug\Everythinggoestocenter.exe.config
+C:\Benji\greenfox\week2\day3\Everythinggoestocenter\Everythinggoestocenter\bin\Debug\Everythinggoestocenter.exe
+C:\Benji\greenfox\week2\day3\Everythinggoestocenter\Everythinggoestocenter\bin\Debug\Everythinggoestocenter.pdb
+C:\Benji\greenfox\week2\day3\Everythinggoestocenter\Everythinggoestocenter\obj\Debug\MainWindow.baml
+C:\Benji\greenfox\week2\day3\Everythinggoestocenter\Everythinggoestocenter\obj\Debug\Everythinggoestocenter.g.resources
+C:\Benji\greenfox\week2\day3\Everythinggoestocenter\Everythinggoestocenter\obj\Debug\Everythinggoestocenter.Properties.Resources.resources
+C:\Benji\greenfox\week2\day3\Everythinggoestocenter\Everythinggoestocenter\obj\Debug\Everythinggoestocenter.csproj.GenerateResource.Cache
+C:\Benji\greenfox\week2\day3\Everythinggoestocenter\Everythinggoestocenter\obj\Debug\Everythinggoestocenter.csproj.CoreCompileInputs.cache
+C:\Benji\greenfox\week2\day3\Everythinggoestocenter\Everythinggoestocenter\obj\Debug\Everythinggoestocenter.exe
+C:\Benji\greenfox\week2\day3\Everythinggoestocenter\Everythinggoestocenter\obj\Debug\Everythinggoestocenter.pdb
