@@ -321,3 +321,11 @@ ASALocalRun/
 
 # MSBuild Binary and Structured Log
 *.binlog
+
+bin/
+
+obj/
+
+*.layout
+
+*.cbp
