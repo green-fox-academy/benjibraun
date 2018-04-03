@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1522754488 source:c:\greenfox\benjibraun\week-07\day1\pi\main.c
+	<stdio.h>
+	<stdlib.h>
+	"pi.h"
+
+1522754307 c:\greenfox\benjibraun\week-07\day1\pi\pi.h
+
