@@ -24,32 +24,60 @@ void list_tasks()
 {
     char* line[100];
     char* info[100];
+    char done;
     int lines=0;
+    int todo=0;
     FILE *fp=fopen("todo.txt","r");
     while(!feof(fp)){
         if (lines%2==0){
             fgets(info,100,fp);
+            done=info[11];
         }
         else{
             fgets(line,100,fp);
-            printf("");
+            ++todo;
+            printf("%d [%c] %s",todo,done,line);
+
         }
         ++lines;
     }
     printf("No todos for today! :)");
 }
+int generateid()
+{
+    int id  = 0;
+    char info[50]="nincs";
+    FILE *fp=fopen("todo.txt","r");
+    if (fp==NULL){
+
+        id=1;
+        return id;
+    }
+    while(!feof(fp)){
+        fgets(info,50,fp);
+        if (info[0]=='I'&&info[1]=='D'){
+            printf("id = %d \n",id);
+            id=(int)info[3] - (int)'0';
+            printf("id = %d \n",id);
+        }
+    }
+    printf("%s az",id);
+    return (int)id+1;
+}
 void add_tasks()
 {
     //char todo[50]= {gets(todo)};
     char todo[50];
-    gets(todo);
 
+
+    gets(todo);
+    int id=generateid();
 
     FILE *fp=fopen("todo.txt","a");
-
-    fprintf(fp,"%s\n",todo);
-    fprintf(fp,"%s\n",todo);
+    fprintf(fp,"ID=%d done=0; \n",id);
+    fprintf(fp,"\t%s\n",todo);
     fclose(fp);
+    free(id);
 
 }
 void remove_tasks()
