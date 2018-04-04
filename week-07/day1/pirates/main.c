@@ -14,7 +14,7 @@ richest that has wooden leg
 
 
 typedef struct {
-    char name[256];
+    char name[100];
     int has_wooden_leg;
     short int gold_count;
 }pirate;
@@ -29,9 +29,11 @@ int main()
     int r = rand()%20;
     pirate pirates[20];
     printf("No.\tname\twooden\tgold\t\n");
+    char* piaretname={"Pali"};
     for (int i=0;i<20;i++)
     {
-        strcpy(pirates[i].name,"Pali");
+        //pirates[i].name='p','a';
+        strcpy(pirates[i].name,piaretname);
         printf("%d\t",i);
         printf("%s\t",pirates[i].name);
 
@@ -80,24 +82,25 @@ char* wooden_leg(pirate piartes[],int length )
         }
         else if (piartes[i].has_wooden_leg==1)
         {
-            names=apend(names,piartes[i].name,sizeof(names)/sizeof(char),sizeof(piartes[i].name)/sizeof(char));
+            names=apend(names,piartes[i].name,sizeof(names)/sizeof(char),sizeof(piaretname)/sizeof(char));
             namesc++;
         }
     }
     return names;
 }
-char* apend(char* base, char* name, int length_of_b, int length_of_n)
+char* apend(char* base, char* name, int length_of_b, int length_of_name)
 {
-    char* full;
+    int x=10;
+    char full[100]={"ba"};
     int j=length_of_b;
+    int expectid_length=length_of_b+length_of_name;
     int i=0;
-    for(i, j ; i<length_of_b, j<length_of_b+length_of_n ; i++,j++)
+    for(int i=0 ; i; i++)
     {
-        printf("%c",base[i]);
-        printf("%c",base[i+1]);
-        full[i]=base[i];
-        printf("%c %c \n",full[i],base[i]);
-        full[j]=name[j];
+        full[length_of_b+i] = base[i];
+        printf("%c %c \n",full[length_of_b+i],base[i]);
     }
-    return full;
+    char* pfull=&full;
+
+    return pfull;
 }
