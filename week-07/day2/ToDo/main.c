@@ -49,7 +49,6 @@ int generateid()
     char info[50]="nincs";
     FILE *fp=fopen("todo.txt","r");
     if (fp==NULL){
-
         id=1;
         return id;
     }
@@ -66,19 +65,14 @@ int generateid()
 }
 void add_tasks()
 {
-    //char todo[50]= {gets(todo)};
+    //char todo[50]= gets(todo);
     char todo[50];
-
-
     gets(todo);
     int id=generateid();
-
     FILE *fp=fopen("todo.txt","a");
     fprintf(fp,"ID=%d done=0; \n",id);
     fprintf(fp,"\t%s\n",todo);
     fclose(fp);
-    free(id);
-
 }
 void remove_tasks()
 {
