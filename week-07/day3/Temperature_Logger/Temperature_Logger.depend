@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1522942466 source:d:\blackbox\main.c
+1522944111 source:d:\blackbox\main.c
 	<stdio.h>
 	<stdlib.h>
 	<conio.h>
@@ -13,9 +13,9 @@
 
 1518448099 d:\blackbox\printer.h
 
-1522941275 d:\blackbox\parser.h
+1522944117 d:\blackbox\parser.h
 
-1522942466 source:d:\blackbox\parser.c
+1522944187 source:d:\blackbox\parser.c
 	<stdio.h>
 	<time.h>
 	"rs232/rs232.h"

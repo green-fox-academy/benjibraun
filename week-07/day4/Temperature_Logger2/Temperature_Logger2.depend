@@ -1,0 +1,46 @@
+# depslib dependency file v1.0
+1523020822 source:d:\blackbox\bb\parser.c
+	<stdio.h>
+	<time.h>
+	"rs232/rs232.h"
+	"parser.h"
+	"printer.h"
+	"string.h"
+
+1518448099 d:\blackbox\bb\rs232\rs232.h
+	<stdint.h>
+	<stdlib.h>
+
+1523012859 d:\blackbox\bb\parser.h
+
+1518448099 d:\blackbox\bb\printer.h
+
+1523005023 source:d:\blackbox\bb\printer.c
+	<stdio.h>
+	<string.h>
+	"printer.h"
+	"rs232/rs232.h"
+
+1518448099 source:d:\blackbox\bb\rs232\rs232-linux.c
+	"rs232.h"
+	<unistd.h>
+	<termios.h>
+	<fcntl.h>
+	<dirent.h>
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+
+1518448099 source:d:\blackbox\bb\rs232\rs232-win.c
+	"rs232.h"
+	<stdio.h>
+	<string.h>
+
+1523020487 source:d:\blackbox\bb\main.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	"rs232/rs232.h"
+	"printer.h"
+	"parser.h"
+
