@@ -114,15 +114,18 @@ int main(void) {
 
 	BSP_COM_Init(COM1, &uart_handle);
 
-	__HAL_RCC_GPIOA_CLK_ENABLE();
+	__HAL_RCC_GPIOA_CLK_ENABLE()
+	;
 
-	__HAL_RCC_GPIOF_CLK_ENABLE();
+	__HAL_RCC_GPIOF_CLK_ENABLE()
+	;
 
-	__HAL_RCC_TIM2_CLK_ENABLE();
+	__HAL_RCC_TIM2_CLK_ENABLE()
+	;
 
 	TimHandle.Instance = TIM2;
-	TimHandle.Init.Period = 1000;
-	TimHandle.Init.Prescaler = 54000;
+	TimHandle.Init.Period = 100;
+	TimHandle.Init.Prescaler = 1;
 	TimHandle.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
 	TimHandle.Init.CounterMode = TIM_COUNTERMODE_UP;
 
@@ -130,7 +133,7 @@ int main(void) {
 	//HAL_TIM_Base_Start(&TimHandle);
 
 	sConfig.OCMode = TIM_OCMODE_PWM1;
-	sConfig.Pulse = 1000 / 2;
+	sConfig.Pulse = 100 / 2;
 	sConfig.OCPolarity = TIM_OCPOLARITY_HIGH;
 	sConfig.OCFastMode = TIM_OCFAST_DISABLE;
 	sConfig.OCNPolarity = TIM_OCNPOLARITY_HIGH;
@@ -145,8 +148,8 @@ int main(void) {
 	//HAL_TIM_Base_Init(&TimHandle);
 	//HAL_TIM_Base_Start(&TimHandle);
 
-	gpio.Mode = GPIO_MODE_OUTPUT_PP;
-	gpio.Pin = GPIO_PIN_8;
+	gpio.Mode = GPIO_MODE_AF_PP;
+	gpio.Pin = GPIO_PIN_15;
 	gpio.Pull = GPIO_NOPULL;
 	gpio.Speed = GPIO_SPEED_HIGH;
 	gpio.Alternate = GPIO_AF1_TIM2;
@@ -167,8 +170,18 @@ int main(void) {
 	printf("**********in STATIC timer & pwm WS**********\r\n\n");
 
 	while (1) {
-		if (TIM2->CNT % 100 == 0)
-			printf("%d\n", TIM2->CNT);
+//		if (TIM2->CNT % 100 == 0)
+//			printf("%d\n", TIM2->CNT);
+
+			for (int i = 1; i < 100; i++) {
+				TIM2->CCR1 = i;
+				HAL_Delay(10);
+			}
+			for (int i = 100; i > 1; i--) {
+				TIM2->CCR1 = i;
+				HAL_Delay(10);
+
+		}
 //		if (TIM2->CNT > 666) {
 //			GPIOA->ODR |= 1 << 9;
 //			GPIOF->ODR &= ~(1 << 8);
