@@ -38,6 +38,8 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include <string.h>
+#include "stm32746g_discovery_ts.h"
+#include "stm32746g_discovery_lcd.h"
 
 /** @addtogroup STM32F7xx_HAL_Examples
  * @{
@@ -46,12 +48,14 @@
 /** @addtogroup Templates
  * @{
  */
+
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 UART_HandleTypeDef uart_handle;
-RNG_HandleTypeDef rng;
+
+volatile uint32_t timIntPeriod;
 
 /* Private function prototypes -----------------------------------------------*/
 
@@ -99,14 +103,14 @@ int main(void) {
 	/* Configure the System clock to have a frequency of 216 MHz */
 	SystemClock_Config();
 
+	BSP_PB_Init(BUTTON_WAKEUP, BUTTON_MODE_EXTI);
+
 	/* Add your application code here
 	 */
-	__HAL_RCC_RNG_CLK_ENABLE()
-	;
-
 	BSP_LED_Init(LED_GREEN);
-	BSP_PB_Init(BUTTON_KEY, BUTTON_MODE_GPIO);
 
+	//TODO:
+	//make the BSP_COM_Init() work in order to be able to use printf()
 	uart_handle.Init.BaudRate = 115200;
 	uart_handle.Init.WordLength = UART_WORDLENGTH_8B;
 	uart_handle.Init.StopBits = UART_STOPBITS_1;
@@ -114,84 +118,47 @@ int main(void) {
 	uart_handle.Init.HwFlowCtl = UART_HWCONTROL_NONE;
 	uart_handle.Init.Mode = UART_MODE_TX_RX;
 
-	BSP_COM_Init(COM1, &uart_handle);
+	BSP_COM_Init(COM2, &uart_handle);
 
-	rng.Instance = RNG;
-	HAL_RNG_Init(&rng);
-	/* Output a message using printf function */
-	printf("\n------------------WELCOME------------------\r\n");
-	printf("**********in STATIC reaction game**********\r\n\n");
+	printf("\n-----------------WELCOME-----------------\r\n");
+	printf("**********in STATIC interrupts WS**********\r\n\n");
 
-	int random1 = HAL_RNG_GetRandomNumber(&rng) % 10 + 1;
-	int cnt = 0;
-	int cnt_led = 1;
-	int tick_b;
-	int is_game_on;
-	int reaction;
-	int reactions[5] = { 0, 0, 0, 0, 0 };
-	int i = 0;
-	int avg = 0;
-	int j = 0;
+	BSP_LCD_Init();
+	// Initialize the LCD Layers
+	BSP_LCD_LayerDefaultInit(1, LCD_FB_START_ADDRESS);
+	BSP_LCD_SelectLayer(1);
+	BSP_LCD_SetFont(&LCD_DEFAULT_FONT);
+
+	BSP_LCD_SetBackColor(LCD_COLOR_RED);
+	BSP_LCD_Clear(LCD_COLOR_BLUE);
+	BSP_LCD_SetTextColor(LCD_COLOR_WHITE);
+
+	BSP_LCD_SetFont(&LCD_DEFAULT_FONT);
+	BSP_LCD_DisplayStringAt(0, 150, (uint8_t *) " Hello embedded!", CENTER_MODE);
+
+	BSP_TS_Init(BSP_LCD_GetXSize(), BSP_LCD_GetYSize());
+	TS_StateTypeDef ts_state;
+	char uart_rst[3];
 	while (1) {
+		BSP_TS_GetState(&ts_state);
 
-		if (cnt == 0) {
-			printf("Let's play a game! Are you ready?\n");
-			tick_b = HAL_GetTick();
-			while (BSP_PB_GetState(BUTTON_KEY) == 0) {
-				if (BSP_PB_GetState(BUTTON_KEY) != 0) {
-					break;
-				} else if (cnt_led % 2 != 0) {
-					BSP_LED_On(LED_GREEN);
-				} else if (cnt_led % 2 == 0) {
-					BSP_LED_Off(LED_GREEN);
-				}
-				if (HAL_GetTick() > (cnt_led * 500) + tick_b) {
-					cnt_led++;
-				}
-			}
-			BSP_LED_Off(LED_GREEN);
-			cnt++;
+		if (ts_state.touchDetected) {
+			BSP_LED_On(LED_GREEN);
+			BSP_LCD_FillCircle((uint16_t) ts_state.touchX[0], (uint16_t) ts_state.touchY[0], 10);
 		}
-		if (cnt == 1) {
-			is_game_on = 1;
-			random1 = HAL_RNG_GetRandomNumber(&rng) % 10 + 1;
-			tick_b = HAL_GetTick();
-			HAL_Delay(500);
-			while (HAL_GetTick() != (random1 * 1000) + tick_b)
-				if (BSP_PB_GetState(BUTTON_KEY) != 0) {
-					printf("you lost\n");
-					is_game_on = 0;
-					break;
-				}
-			if (is_game_on == 1) {
-				BSP_LED_On(LED_GREEN);
-				tick_b = HAL_GetTick();
-				while (BSP_PB_GetState(BUTTON_KEY) == 0) {
-					reaction = HAL_GetTick() - tick_b;
-				}
-				BSP_LED_Off(LED_GREEN);
-				printf("reaction=%d\n", reaction);
-				reactions[i] = reaction;
-
-				if (i < 4) {
-					i++;
-				} else {
-					i = 0;
-				}
-
-				for (j = 0; j < 5; j++) {
-					if (reactions[j] != 0) {
-						avg += reactions[j];
-					} else {
-						break;
-					}
-				}
-				printf("avg=%d\n", (avg / j));
-				avg = 0;
-			}
+		BSP_LCD_SetBackColor(LCD_COLOR_GREEN);
+		HAL_UART_Receive(&uart_handle,&uart_rst,50,100);
+		if (!strcmp(uart_rst, "on ")) {
+			BSP_LED_On(LED_GREEN);
+			uart_rst[1]='g';
+		}
+		else if (!strcmp(uart_rst, "off")) {
+			BSP_LED_Off(LED_GREEN);
+			uart_rst[1]='g';
 		}
 	}
 }
+
 /**
  * @brief  Retargets the C library printf function to the USART.
  * @param  None
