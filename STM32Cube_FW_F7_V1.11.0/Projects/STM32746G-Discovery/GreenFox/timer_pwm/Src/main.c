@@ -52,9 +52,10 @@
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 UART_HandleTypeDef uart_handle;
+GPIO_InitTypeDef gpio;
+TIM_HandleTypeDef    TimHandle;
 
 /* Private function prototypes -----------------------------------------------*/
-
 #ifdef __GNUC__
 /* With GCC/RAISONANCE, small printf (option LD Linker->Libraries->Small printf
    set to 'Yes') calls __io_putchar() */
@@ -113,6 +114,34 @@ int main(void)
 
   BSP_COM_Init(COM1, &uart_handle);
 
+   __HAL_RCC_GPIOA_CLK_ENABLE();
+   __HAL_RCC_GPIOF_CLK_ENABLE();
+
+   gpio.Mode = GPIO_MODE_OUTPUT_PP;
+   gpio.Pin = GPIO_PIN_15;
+   gpio.Pull = GPIO_PULLDOWN;
+   gpio.Speed = GPIO_SPEED_HIGH;
+   HAL_GPIO_Init(GPIOA, &gpio);
+
+
+   gpio.Pin = GPIO_PIN_10;
+   HAL_GPIO_Init(GPIOF, &gpio);
+
+   gpio.Pin = GPIO_PIN_8;
+   HAL_GPIO_Init(GPIOF, &gpio);
+
+   __HAL_RCC_TIM2_CLK_ENABLE();
+   TimHandle.Instance               = TIM2;
+   TimHandle.Init.Period            = 1000;
+   TimHandle.Init.Prescaler         = 27000;
+   TimHandle.Init.ClockDivision     = TIM_CLOCKDIVISION_DIV1;
+   TimHandle.Init.CounterMode       = TIM_COUNTERMODE_UP;
+
+
+   HAL_TIM_Base_Init(&TimHandle);
+
+   HAL_TIM_Base_Start(&TimHandle);
+
   /* Output without printf, using HAL function*/
   //char msg[] = "UART HAL Example\r\n";
   //HAL_UART_Transmit(&uart_handle, msg, strlen(msg), 100);
@@ -123,6 +152,25 @@ int main(void)
 
 	  while (1)
 	  {
+		  if (__HAL_TIM_GET_COUNTER(&TimHandle)>666)
+		  {
+		  GPIOA->ODR |= 1 << 15;
+		  GPIOF->ODR &= ~(1 << 8);
+		  GPIOF->ODR &= ~(1 << 10);
+		  }
+		  else if (__HAL_TIM_GET_COUNTER(&TimHandle)<333)
+		  {
+		  GPIOF->ODR |= 1 << 10;
+		  GPIOA->ODR &= ~(1 << 15);
+		  GPIOF->ODR &= ~(1 << 8);
+
+		  }
+		  else
+		  {
+			  GPIOF->ODR |= 1 << 8;
+			  GPIOA->ODR &= ~(1 << 15);
+			  GPIOF->ODR &= ~(1 << 10);
+		  }
 	  }
 }
 
@@ -191,8 +239,8 @@ static void SystemClock_Config(void)
   RCC_ClkInitStruct.ClockType = (RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2);
   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
-  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV4;  
-  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV2;  
+  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV16;
+  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV2;
   if(HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_7) != HAL_OK)
   {
     Error_Handler();
