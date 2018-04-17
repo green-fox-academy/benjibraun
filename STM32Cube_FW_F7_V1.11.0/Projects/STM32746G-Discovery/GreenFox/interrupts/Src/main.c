@@ -53,7 +53,10 @@
 /* Private variables ---------------------------------------------------------*/
 UART_HandleTypeDef uart_handle;
 GPIO_InitTypeDef conf;
-
+TIM_HandleTypeDef TimHandle;
+TIM_HandleTypeDef TimHandle2;
+GPIO_InitTypeDef gpio;
+TIM_OC_InitTypeDef sConfig;
 volatile uint32_t timIntPeriod;
 
 /* Private function prototypes -----------------------------------------------*/
@@ -78,6 +81,8 @@ static void CPU_CACHE_Enable(void);
  * @param  None
  * @retval None
  */
+
+volatile int push = 0;
 int main(void) {
 	/* This project template calls firstly two functions in order to configure MPU feature
 	 and to enable the CPU Cache, respectively MPU_Config() and CPU_CACHE_Enable().
@@ -106,16 +111,36 @@ int main(void) {
 	/* Add your application code here
 	 */
 	BSP_LED_Init(LED_GREEN);
+	__HAL_RCC_TIM2_CLK_ENABLE();
+	__HAL_RCC_TIM5_CLK_ENABLE();
+	__HAL_RCC_GPIOA_CLK_ENABLE();
 	__HAL_RCC_GPIOI_CLK_ENABLE();
+
+	TimHandle.Instance = TIM2;
+	TimHandle.Init.Period = 2000;
+	TimHandle.Init.Prescaler = 27000;
+	TimHandle.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+	TimHandle.Init.CounterMode = TIM_COUNTERMODE_UP;
+
+	TimHandle2.Instance = TIM5;
+	TimHandle2.Init.Period = 100;
+	TimHandle2.Init.Prescaler = 1;
+	TimHandle2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+	TimHandle2.Init.CounterMode = TIM_COUNTERMODE_UP;
+
+	sConfig.OCMode = TIM_OCMODE_PWM1;
+	sConfig.Pulse = 100 / 100;
+	sConfig.OCPolarity = TIM_OCPOLARITY_HIGH;
+	sConfig.OCFastMode = TIM_OCFAST_DISABLE;
+	sConfig.OCNPolarity = TIM_OCNPOLARITY_HIGH;
+	sConfig.OCNIdleState = TIM_OCNIDLESTATE_RESET;
+	sConfig.OCIdleState = TIM_OCIDLESTATE_RESET;
 
 	conf.Pin = GPIO_PIN_11;
 	conf.Pull = GPIO_NOPULL;
 	conf.Speed = GPIO_SPEED_FAST;
 	conf.Mode = GPIO_MODE_IT_RISING;
 
-	HAL_GPIO_Init(GPIOI, &conf);
-	HAL_NVIC_SetPriority(EXTI15_10_IRQn, 0x0F, 0x00);
-	HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
 
 	uart_handle.Init.BaudRate = 115200;
 	uart_handle.Init.WordLength = UART_WORDLENGTH_8B;
@@ -124,9 +149,30 @@ int main(void) {
 	uart_handle.Init.HwFlowCtl = UART_HWCONTROL_NONE;
 	uart_handle.Init.Mode = UART_MODE_TX_RX;
 
+	gpio.Mode = GPIO_MODE_AF_PP;
+	gpio.Pin = GPIO_PIN_0;
+	gpio.Pull = GPIO_NOPULL;
+	gpio.Speed = GPIO_SPEED_HIGH;
+	gpio.Alternate = GPIO_AF2_TIM5;
+
+
 	BSP_COM_Init(COM1, &uart_handle);
 
+	HAL_NVIC_SetPriority(TIM2_IRQn, 0x0F, 0x00);
+	HAL_NVIC_EnableIRQ(TIM2_IRQn);
 
+	HAL_NVIC_SetPriority(EXTI15_10_IRQn, 0x0F, 0x00);
+	HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
+
+	HAL_GPIO_Init(GPIOA, &gpio);
+	HAL_GPIO_Init(GPIOI, &conf);
+
+	HAL_TIM_Base_Init(&TimHandle);
+	HAL_TIM_Base_Start_IT(&TimHandle);
+
+	HAL_TIM_PWM_ConfigChannel(&TimHandle2, &sConfig, TIM_CHANNEL_1);
+	HAL_TIM_PWM_Init(&TimHandle2);
+	HAL_TIM_PWM_Start(&TimHandle2, TIM_CHANNEL_1);
 	printf("\n**********WELCOME in interrupts WS**********\r\n\n");
 
 
@@ -134,7 +180,24 @@ int main(void) {
 	}
 }
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
-    BSP_LED_On(LED_GREEN);
+	if (push%2==0){
+		BSP_LED_On(LED_GREEN);
+		GPIOA->ODR |= 1;
+		push++;
+		TIM5->CCR1 = push;
+	}
+	else
+	{
+		GPIOA->ODR &= ~(1);
+		BSP_LED_Off(LED_GREEN);
+		push++;
+		TIM5->CCR1 = push;
+	}
+}
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
+	//HAL_GPIO_TogglePin(GPIOA,GPIO_PIN_0);
+	//GPIOA->ODR ^= 1;
+	//HAL_TIM_Base_Stop_IT(&TimHandle);
 }
 
 /**
@@ -199,7 +262,7 @@ static void SystemClock_Config(void) {
 			| RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2);
 	RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
 	RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
-	RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV4;
+	RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV8;
 	RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV2;
 	if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_7) != HAL_OK) {
 		Error_Handler();
