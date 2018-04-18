@@ -57,6 +57,10 @@ TIM_HandleTypeDef TimHandle;
 TIM_HandleTypeDef TimHandle2;
 GPIO_InitTypeDef gpio;
 TIM_OC_InitTypeDef sConfig;
+I2C_HandleTypeDef I2cHandle;
+#define IC_ADDRES (0b1001000 << 1)
+uint8_t regi = 0;
+uint8_t temp ;
 volatile uint32_t timIntPeriod;
 
 /* Private function prototypes -----------------------------------------------*/
@@ -115,6 +119,8 @@ int main(void) {
 	__HAL_RCC_TIM5_CLK_ENABLE();
 	__HAL_RCC_GPIOA_CLK_ENABLE();
 	__HAL_RCC_GPIOI_CLK_ENABLE();
+	__HAL_RCC_GPIOB_CLK_ENABLE();
+	__HAL_RCC_I2C1_CLK_ENABLE();
 
 	TimHandle.Instance = TIM2;
 	TimHandle.Init.Period = 400;
@@ -167,8 +173,19 @@ int main(void) {
 	HAL_NVIC_SetPriority(USART1_IRQn , 0x0F, 0x00);
 	HAL_NVIC_EnableIRQ(USART1_IRQn );
 
+	HAL_NVIC_SetPriority(I2C1_EV_IRQn , 0x0F, 0x00);
+	HAL_NVIC_EnableIRQ(I2C1_EV_IRQn);
+
 	HAL_GPIO_Init(GPIOA, &gpio);
 	HAL_GPIO_Init(GPIOI, &conf);
+
+	gpio.Mode = GPIO_MODE_AF_OD;
+	gpio.Pin = GPIO_PIN_8|GPIO_PIN_9;
+	gpio.Pull = GPIO_PULLUP;
+	gpio.Speed = GPIO_SPEED_HIGH;
+	gpio.Alternate = GPIO_AF4_I2C1;
+	HAL_GPIO_Init(GPIOB, &gpio);
+
 
 	HAL_TIM_Base_Init(&TimHandle);
 	HAL_TIM_Base_Start_IT(&TimHandle);
@@ -177,10 +194,23 @@ int main(void) {
 	HAL_TIM_PWM_Init(&TimHandle2);
 	HAL_TIM_PWM_Start(&TimHandle2, TIM_CHANNEL_1);
 	printf("\n**********WELCOME in interrupts WS**********\r\n\n");
+	I2cHandle.Instance             = I2C1;
+	I2cHandle.Init.Timing          = 0x40912732;
+	I2cHandle.Init.AddressingMode  = I2C_ADDRESSINGMODE_7BIT;
 
+	HAL_I2C_Init(&I2cHandle);
 
 	while (1) {
+		HAL_I2C_Master_Transmit_IT(&I2cHandle,IC_ADDRES,&regi,1);
+		HAL_Delay(200);
 	}
+}
+
+void HAL_I2C_MasterRxCpltCallback(I2C_HandleTypeDef *hi2c){
+	printf("%d\n",temp);
+}
+void HAL_I2C_MasterTxCpltCallback(I2C_HandleTypeDef *hi2c){
+	HAL_I2C_Master_Receive_IT(&I2cHandle,IC_ADDRES,&temp,1);
 }
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 	GPIOA->ODR |= 1;
@@ -205,6 +235,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
 		push--;
 		TIM5->CCR1 = push;
 	}
+
 //	else if (push>50){
 //		push-=2;
 //		TIM5->CCR1 = push;

@@ -57,6 +57,7 @@
 /* Private functions ---------------------------------------------------------*/
 extern TIM_HandleTypeDef TimHandle;
 extern UART_HandleTypeDef uart_handle;
+extern I2C_HandleTypeDef I2cHandle;
 /******************************************************************************/
 /*            Cortex-M7 Processor Exceptions Handlers                         */
 /******************************************************************************/
@@ -172,6 +173,10 @@ void TIM2_IRQHandler (void)
 void USART1_IRQHandler (void)
 {
 	HAL_UART_IRQHandler(&uart_handle);
+}
+
+void I2C1_EV_IRQHandler (void){
+	HAL_I2C_EV_IRQHandler(&I2cHandle);
 }
 /******************************************************************************/
 /*                 STM32F7xx Peripherals Interrupt Handlers                   */
