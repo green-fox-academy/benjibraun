@@ -122,6 +122,7 @@ int main(void)
 	__HAL_RCC_GPIOA_CLK_ENABLE();
 	__HAL_RCC_GPIOB_CLK_ENABLE();
 
+
 	TimHandle2.Instance = TIM2;
   	TimHandle2.Init.Period = 1;
   	TimHandle2.Init.Prescaler = 65535;
@@ -132,7 +133,12 @@ int main(void)
   	TimHandle2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
 
 	HAL_TIM_Base_Init(&TimHandle2);
-	HAL_TIM_Base_Start_IT(&TimHandle2);
+
+
+	sICConfig.ICPolarity  = TIM_ICPOLARITY_RISING;
+	sICConfig.ICSelection = TIM_ICSELECTION_DIRECTTI;
+	sICConfig.ICPrescaler = TIM_ICPSC_DIV1;
+	sICConfig.ICFilter    = 0;
 
   	TimHandle3.Instance = TIM3;
   	TimHandle3.Init.Period = 100;
@@ -143,14 +149,13 @@ int main(void)
 	HAL_TIM_Base_Init(&TimHandle3);
 	HAL_TIM_Base_Start(&TimHandle3);
 
-	sICConfig.ICPolarity  = TIM_ICPOLARITY_RISING;
-	sICConfig.ICSelection = TIM_ICSELECTION_DIRECTTI;
-	sICConfig.ICPrescaler = TIM_ICPSC_DIV1;
-	sICConfig.ICFilter    = 0;
-
-
   	HAL_TIM_IC_Init(&TimHandle2) ;
 	HAL_TIM_IC_ConfigChannel(&TimHandle2, &sICConfig, TIM_CHANNEL_1);
+
+	HAL_NVIC_EnableIRQ(TIM2_IRQn);
+	HAL_NVIC_SetPriority(TIM2_IRQn, 0x0F, 0x00);
+
+	HAL_TIM_Base_Start_IT(&TimHandle2);
 	HAL_TIM_IC_Start_IT(&TimHandle2, TIM_CHANNEL_1);
 
 	sConfig.OCMode = TIM_OCMODE_PWM1;
@@ -172,11 +177,11 @@ int main(void)
 	gpio.Alternate = GPIO_AF2_TIM3;
 	HAL_GPIO_Init(GPIOB, &gpio);
 
-	gpio2.Mode = GPIO_MODE_INPUT;
+	gpio2.Mode = GPIO_MODE_AF_OD;
 	gpio2.Pin = GPIO_PIN_15;
 	gpio2.Pull = GPIO_NOPULL;
 	gpio2.Speed = GPIO_SPEED_HIGH;
-
+	gpio2.Alternate = GPIO_AF1_TIM2;
 	HAL_GPIO_Init(GPIOA, &gpio2);
 
 
@@ -200,7 +205,7 @@ int main(void)
 			TIM3->CCR1 = i;
 			HAL_Delay(10);
 	}
-		HAL_Delay(1000);
+		HAL_Delay(1500);
 	  HAL_Delay(10);
   }
 }
