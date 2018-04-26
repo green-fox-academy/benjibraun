@@ -44,7 +44,9 @@
   	GPIO_InitTypeDef gpio2;
   	TIM_OC_InitTypeDef sConfig;
   	TIM_IC_InitTypeDef sICConfig;
-
+  	UART_HandleTypeDef uart_handle;
+  	ADC_HandleTypeDef AdcHandle;
+  	ADC_ChannelConfTypeDef sADCConfig;
 /** @addtogroup STM32F7xx_HAL_Examples
   * @{
   */
@@ -59,6 +61,8 @@ typedef struct {
 	uint32_t prev;
 	uint32_t last;
 } input_capture_data_t;
+
+input_capture_data_t inputc;
 
 /* Private define ------------------------------------------------------------*/
 //#define USE_P_CTRLER
@@ -121,18 +125,26 @@ int main(void)
 	__HAL_RCC_TIM3_CLK_ENABLE();
 	__HAL_RCC_GPIOA_CLK_ENABLE();
 	__HAL_RCC_GPIOB_CLK_ENABLE();
+	__HAL_RCC_ADC3_CLK_ENABLE();
 
+
+	uart_handle.Init.BaudRate = 115200;
+	uart_handle.Init.WordLength = UART_WORDLENGTH_8B;
+	uart_handle.Init.StopBits = UART_STOPBITS_1;
+	uart_handle.Init.Parity = UART_PARITY_NONE;
+	uart_handle.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+	uart_handle.Init.Mode = UART_MODE_TX_RX;
+	BSP_COM_Init(COM1, &uart_handle);
 
 	TimHandle2.Instance = TIM2;
-  	TimHandle2.Init.Period = 1;
-  	TimHandle2.Init.Prescaler = 65535;
+  	TimHandle2.Init.Period = 65535;
+  	TimHandle2.Init.Prescaler = 0;
   	TimHandle2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   	TimHandle2.Init.CounterMode = TIM_COUNTERMODE_UP;
   	TimHandle2.State = HAL_TIM_STATE_RESET;
-  	TimHandle2.Channel = HAL_TIM_ACTIVE_CHANNEL_1;
+  	TimHandle2.Channel = HAL_TIM_ACTIVE_CHANNEL_1 && HAL_TIM_ACTIVE_CHANNEL_2 ;
   	TimHandle2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
 
-	HAL_TIM_Base_Init(&TimHandle2);
 
 
 	sICConfig.ICPolarity  = TIM_ICPOLARITY_RISING;
@@ -149,6 +161,7 @@ int main(void)
 	HAL_TIM_Base_Init(&TimHandle3);
 	HAL_TIM_Base_Start(&TimHandle3);
 
+	HAL_TIM_Base_Init(&TimHandle2);
   	HAL_TIM_IC_Init(&TimHandle2) ;
 	HAL_TIM_IC_ConfigChannel(&TimHandle2, &sICConfig, TIM_CHANNEL_1);
 
@@ -157,6 +170,8 @@ int main(void)
 
 	HAL_TIM_Base_Start_IT(&TimHandle2);
 	HAL_TIM_IC_Start_IT(&TimHandle2, TIM_CHANNEL_1);
+
+
 
 	sConfig.OCMode = TIM_OCMODE_PWM1;
 	sConfig.Pulse = 100 / 2;
@@ -177,25 +192,34 @@ int main(void)
 	gpio.Alternate = GPIO_AF2_TIM3;
 	HAL_GPIO_Init(GPIOB, &gpio);
 
-	gpio2.Mode = GPIO_MODE_AF_OD;
-	gpio2.Pin = GPIO_PIN_15;
+	gpio.Mode = GPIO_MODE_AF_OD;
+	gpio.Pin = GPIO_PIN_15;
+	gpio.Pull = GPIO_NOPULL;
+	gpio.Speed = GPIO_SPEED_HIGH;
+	gpio.Alternate = GPIO_AF1_TIM2;
+	HAL_GPIO_Init(GPIOA, &gpio);
+
+	gpio2.Mode = GPIO_MODE_ANALOG;
+	gpio2.Pin = GPIO_PIN_0;
 	gpio2.Pull = GPIO_NOPULL;
 	gpio2.Speed = GPIO_SPEED_HIGH;
-	gpio2.Alternate = GPIO_AF1_TIM2;
 	HAL_GPIO_Init(GPIOA, &gpio2);
 
-
+	TIM3->CCR1 = 100;
 
   /* Infinite loop */
   while (1)
   {
 	  char buff[100];
-	  sprintf(buff, "%d", cntr);
+	  char buff2[100];
+	  sprintf(buff, "%d",inputc.ovf);
+	  sprintf(buff2, "%d",inputc.last);
 	  BSP_LCD_ClearStringLine(0);
 	  BSP_LCD_DisplayStringAtLine(0, (uint8_t *)buff);
+	  BSP_LCD_DisplayStringAtLine(1, (uint8_t *)buff2);
 	  cntr++;
 
-
+	 /*
 		for (int i = 1; i < 100; i++) {
 			TIM3->CCR1 = i;
 			HAL_Delay(10);
@@ -206,12 +230,18 @@ int main(void)
 			HAL_Delay(10);
 	}
 		HAL_Delay(1500);
+	*/
 	  HAL_Delay(10);
   }
 }
 
 
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
+	inputc.ovf++;
+}
 void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim){
+	inputc.prev = inputc.last;
+	inputc.last = HAL_TIM_ReadCapturedValue(htim,TIM_CHANNEL_1);
 
 	BSP_LED_Toggle(LED_GREEN);
 }
