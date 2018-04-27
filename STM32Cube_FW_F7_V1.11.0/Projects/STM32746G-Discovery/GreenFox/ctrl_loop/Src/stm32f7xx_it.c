@@ -42,7 +42,7 @@
 #include "main.h"
 
 extern TIM_HandleTypeDef TimHandle2;
-
+extern ADC_HandleTypeDef AdcHandle;
 
 
 /** @addtogroup STM32F7xx_HAL_Examples
@@ -168,6 +168,10 @@ void TIM2_IRQHandler(void)
   HAL_TIM_IRQHandler(&TimHandle2);
 }
 
+void ADC3_DMA_IRQHandler(void)
+{
+  HAL_DMA_IRQHandler(AdcHandle.DMA_Handle);
+}
   
 
 /******************************************************************************/

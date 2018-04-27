@@ -61,28 +61,35 @@ TIM_IC_InitTypeDef sICConfig;
 UART_HandleTypeDef uart_handle;
 ADC_HandleTypeDef AdcHandle;
 ADC_ChannelConfTypeDef sADCConfig;
-
+p_ctrler_t ctrler;
+pi_ctrler_t ctrler_pi;
 input_capture_data_t inputc;
 
 /* Private define ------------------------------------------------------------*/
+#define IC_PERIOD 65535
 //#define USE_P_CTRLER
 
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
+int freq;
+float T_period;
+int steps;
 /* Private function prototypes -----------------------------------------------*/
 static void SystemClock_Config(void);
 static void Error_Handler(void);
 static void MPU_Config(void);
 static void CPU_CACHE_Enable(void);
-int steps;
-int state = 0;
-/* Private functions ---------------------------------------------------------*/
+void periphera_init (void);
 void LCD_print();
+
+/* Private functions ---------------------------------------------------------*/
 /**
  * @brief  Main program
  * @param  None
  * @retval None
  */
+
+
 int main(void) {
 	/* This project template calls firstly two functions in order to configure MPU feature
 	 and to enable the CPU Cache, respectively MPU_Config() and CPU_CACHE_Enable().
@@ -108,125 +115,16 @@ int main(void) {
 	SystemClock_Config();
 
 	/* Add your application code here */
-	BSP_LCD_Init();
-	BSP_LCD_LayerDefaultInit(0, LCD_FB_START_ADDRESS);
-	BSP_LCD_SelectLayer(0);
-	BSP_LCD_DisplayOn();
-	BSP_LCD_Clear(LCD_COLOR_BLACK);
-	BSP_LED_Init(LED_GREEN);
+	periphera_init ();
+
 	int8_t cntr = 0;
-
-	/* time + PWM config */
-
-	__HAL_RCC_TIM2_CLK_ENABLE()
-	;
-	__HAL_RCC_TIM3_CLK_ENABLE()
-	;
-	__HAL_RCC_GPIOA_CLK_ENABLE()
-	;
-	__HAL_RCC_GPIOB_CLK_ENABLE()
-	;
-	__HAL_RCC_ADC3_CLK_ENABLE()
-	;
-
-	uart_handle.Init.BaudRate = 115200;
-	uart_handle.Init.WordLength = UART_WORDLENGTH_8B;
-	uart_handle.Init.StopBits = UART_STOPBITS_1;
-	uart_handle.Init.Parity = UART_PARITY_NONE;
-	uart_handle.Init.HwFlowCtl = UART_HWCONTROL_NONE;
-	uart_handle.Init.Mode = UART_MODE_TX_RX;
-	BSP_COM_Init(COM1, &uart_handle);
-
-	TimHandle2.Instance = TIM2;
-	TimHandle2.Init.Period = 65535;
-	TimHandle2.Init.Prescaler = 54;
-	TimHandle2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
-	TimHandle2.Init.CounterMode = TIM_COUNTERMODE_UP;
-	TimHandle2.State = HAL_TIM_STATE_RESET;
-	TimHandle2.Channel = HAL_TIM_ACTIVE_CHANNEL_1 && HAL_TIM_ACTIVE_CHANNEL_2;
-	TimHandle2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
-
-	sICConfig.ICPolarity = TIM_ICPOLARITY_RISING;
-	sICConfig.ICSelection = TIM_ICSELECTION_DIRECTTI;
-	sICConfig.ICPrescaler = TIM_ICPSC_DIV1;
-	sICConfig.ICFilter = 0;
-
-	TimHandle3.Instance = TIM3;
-	TimHandle3.Init.Period = 100;
-	TimHandle3.Init.Prescaler = 1;
-	TimHandle3.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
-	TimHandle3.Init.CounterMode = TIM_COUNTERMODE_UP;
-
-	HAL_TIM_Base_Init(&TimHandle3);
-	HAL_TIM_Base_Start(&TimHandle3);
-
-	HAL_TIM_Base_Init(&TimHandle2);
-	HAL_TIM_IC_Init(&TimHandle2);
-	HAL_TIM_IC_ConfigChannel(&TimHandle2, &sICConfig, TIM_CHANNEL_1);
-
-	HAL_NVIC_EnableIRQ(TIM2_IRQn);
-	HAL_NVIC_SetPriority(TIM2_IRQn, 0x0F, 0x00);
-
-	HAL_TIM_Base_Start_IT(&TimHandle2);
-	HAL_TIM_IC_Start_IT(&TimHandle2, TIM_CHANNEL_1);
-
-	sConfig.OCMode = TIM_OCMODE_PWM1;
-	sConfig.Pulse = 100 / 2;
-	sConfig.OCPolarity = TIM_OCPOLARITY_HIGH;
-	sConfig.OCFastMode = TIM_OCFAST_DISABLE;
-	sConfig.OCNPolarity = TIM_OCNPOLARITY_HIGH;
-	sConfig.OCNIdleState = TIM_OCNIDLESTATE_RESET;
-	sConfig.OCIdleState = TIM_OCIDLESTATE_RESET;
-
-	HAL_TIM_PWM_ConfigChannel(&TimHandle3, &sConfig, TIM_CHANNEL_1);
-	HAL_TIM_PWM_Init(&TimHandle3);
-	HAL_TIM_PWM_Start(&TimHandle3, TIM_CHANNEL_1);
-
-	gpio.Mode = GPIO_MODE_AF_PP;
-	gpio.Pin = GPIO_PIN_4;
-	gpio.Pull = GPIO_NOPULL;
-	gpio.Speed = GPIO_SPEED_HIGH;
-	gpio.Alternate = GPIO_AF2_TIM3;
-	HAL_GPIO_Init(GPIOB, &gpio);
-
-	gpio.Mode = GPIO_MODE_AF_OD;
-	gpio.Pin = GPIO_PIN_15;
-	gpio.Pull = GPIO_NOPULL;
-	gpio.Speed = GPIO_SPEED_HIGH;
-	gpio.Alternate = GPIO_AF1_TIM2;
-	HAL_GPIO_Init(GPIOA, &gpio);
-
-	gpio2.Mode = GPIO_MODE_ANALOG;
-	gpio2.Pin = GPIO_PIN_0;
-	gpio2.Pull = GPIO_NOPULL;
-	gpio2.Speed = GPIO_SPEED_HIGH;
-
-	sADCConfig.Channel = ADC_CHANNEL_3;
-	sADCConfig.Rank = 1;
-	sADCConfig.SamplingTime = ADC_SAMPLETIME_3CYCLES;
-	sADCConfig.Offset = 0;
-	AdcHandle.Instance = ADC3;
-	AdcHandle.Init.ClockPrescaler = ADC_CLOCKPRESCALER_PCLK_DIV4;
-	AdcHandle.Init.Resolution = ADC_RESOLUTION_12B;
-	AdcHandle.Init.ScanConvMode = DISABLE; /* Sequencer disabled (ADC conversion on only 1 channel: channel set on rank 1) */
-	AdcHandle.Init.ContinuousConvMode = ENABLE; /* Continuous mode enabled to have continuous conversion  */
-	AdcHandle.Init.DiscontinuousConvMode = DISABLE; /* Parameter discarded because sequencer is disabled */
-	AdcHandle.Init.NbrOfDiscConversion = 0;
-	AdcHandle.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE; /* Conversion start trigged at each external event */
-	AdcHandle.Init.ExternalTrigConv = ADC_EXTERNALTRIGCONV_T1_CC1;
-	AdcHandle.Init.DataAlign = ADC_DATAALIGN_RIGHT;
-	AdcHandle.Init.NbrOfConversion = 1;
-	AdcHandle.Init.DMAContinuousRequests = ENABLE;
-	AdcHandle.Init.EOCSelection = DISABLE;
-	HAL_GPIO_Init(GPIOA, &gpio2);
-	HAL_ADC_Start(&AdcHandle);
-	HAL_ADC_ConfigChannel(&AdcHandle, &sADCConfig);
-
-	TIM3->CCR1 = 100;
-
+	TIM3->CCR1 = 50;
 	inputc.last = 0;
 	inputc.ovf = 0;
 	inputc.prev = 0;
+	p_init(&ctrler);
+	pi_init(&ctrler_pi);
+
 	/* Infinite loop */
 	while (1) {
 		char buff[100];
@@ -237,30 +135,12 @@ int main(void) {
 			ar = HAL_ADC_GetValue(&AdcHandle);
 
 		}
-		sprintf(buff, "%d", ar);
-		sprintf(buff2, "%d", steps);
-
-		BSP_LCD_ClearStringLine(5);
-		//BSP_LCD_DisplayStringAtLine(0, (uint8_t *)buff);
-		BSP_LCD_DisplayStringAtLine(5, (uint8_t *) buff);
 		*/
 		cntr++;
 
 		LCD_print();
-
-		/*
-		for (int i = 1; i < 100; i++) {
-			TIM3->CCR1 = i;
-			HAL_Delay(10);
-		}
-
-		for (int i = 100; i > 1; i--) {
-			TIM3->CCR1 = i;
-			HAL_Delay(10);
-		}
-		*/
-
-
+		ctrler_pi.sense = freq/4;
+		TIM3->CCR1 = (int) pi_control(&ctrler_pi);
 		HAL_Delay(10);
 	}
 }
@@ -269,19 +149,19 @@ void LCD_print() {
 	char buff[100];
 
 
-	sprintf(buff, "%d", inputc.ovf);
+	sprintf(buff, "%d", TIM3->CCR1);
 	BSP_LCD_ClearStringLine(0);
 	BSP_LCD_DisplayStringAtLine(0, (uint8_t *) buff);
 
-	sprintf(buff, "%d", inputc.last);
+	sprintf(buff, "%f", ctrler_pi.out);
 	BSP_LCD_ClearStringLine(1);
 	BSP_LCD_DisplayStringAtLine(1, (uint8_t *) buff);
 
-	sprintf(buff, "%d", inputc.prev);
+	sprintf(buff, "%f", ctrler_pi.sense);
 	BSP_LCD_ClearStringLine(2);
 	BSP_LCD_DisplayStringAtLine(2, (uint8_t *) buff);
 
-	sprintf(buff, "%d", steps);
+	sprintf(buff, "%d", freq);
 	BSP_LCD_ClearStringLine(3);
 	BSP_LCD_DisplayStringAtLine(3, (uint8_t *) buff);
 	HAL_Delay(100);
@@ -295,10 +175,131 @@ void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim) {
 	inputc.prev = inputc.last;
 	inputc.last = HAL_TIM_ReadCapturedValue(htim, TIM_CHANNEL_1);
 	steps = (65535 * inputc.ovf) + inputc.last - inputc.prev;
-
+	T_period = (float)((inputc.ovf * IC_PERIOD + inputc.last - inputc.prev) * 0.001);
+	freq = (1 / T_period) * 1000;
 	inputc.ovf = 0;
-	BSP_LED_Toggle(LED_GREEN);
+	//BSP_LED_Toggle(LED_GREEN);
 }
+
+void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* AdcHandle)
+{
+  /* Turn LED1 on: Transfer process is correct */
+  BSP_LED_On(LED1);
+}
+
+void periphera_init (void){
+BSP_LCD_Init();
+BSP_LCD_LayerDefaultInit(0, LCD_FB_START_ADDRESS);
+BSP_LCD_SelectLayer(0);
+BSP_LCD_DisplayOn();
+BSP_LCD_Clear(LCD_COLOR_BLACK);
+BSP_LED_Init(LED_GREEN);
+
+/* time + PWM config */
+
+__HAL_RCC_TIM2_CLK_ENABLE();
+__HAL_RCC_TIM3_CLK_ENABLE();
+__HAL_RCC_GPIOA_CLK_ENABLE();
+__HAL_RCC_GPIOB_CLK_ENABLE();
+__HAL_RCC_ADC3_CLK_ENABLE();
+
+uart_handle.Init.BaudRate = 115200;
+uart_handle.Init.WordLength = UART_WORDLENGTH_8B;
+uart_handle.Init.StopBits = UART_STOPBITS_1;
+uart_handle.Init.Parity = UART_PARITY_NONE;
+uart_handle.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+uart_handle.Init.Mode = UART_MODE_TX_RX;
+BSP_COM_Init(COM1, &uart_handle);
+
+TimHandle2.Instance = TIM2;
+TimHandle2.Init.Period = 65535;
+TimHandle2.Init.Prescaler = 54;
+TimHandle2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+TimHandle2.Init.CounterMode = TIM_COUNTERMODE_UP;
+TimHandle2.State = HAL_TIM_STATE_RESET;
+TimHandle2.Channel = HAL_TIM_ACTIVE_CHANNEL_1 && HAL_TIM_ACTIVE_CHANNEL_2;
+TimHandle2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+
+sICConfig.ICPolarity = TIM_ICPOLARITY_RISING;
+sICConfig.ICSelection = TIM_ICSELECTION_DIRECTTI;
+sICConfig.ICPrescaler = TIM_ICPSC_DIV1;
+sICConfig.ICFilter = 0;
+
+TimHandle3.Instance = TIM3;
+TimHandle3.Init.Period = 100;
+TimHandle3.Init.Prescaler = 1;
+TimHandle3.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+TimHandle3.Init.CounterMode = TIM_COUNTERMODE_UP;
+
+HAL_TIM_Base_Init(&TimHandle3);
+HAL_TIM_Base_Start(&TimHandle3);
+
+HAL_TIM_Base_Init(&TimHandle2);
+HAL_TIM_IC_Init(&TimHandle2);
+HAL_TIM_IC_ConfigChannel(&TimHandle2, &sICConfig, TIM_CHANNEL_1);
+
+HAL_NVIC_EnableIRQ(TIM2_IRQn);
+HAL_NVIC_SetPriority(TIM2_IRQn, 0x0F, 0x00);
+
+HAL_TIM_Base_Start_IT(&TimHandle2);
+HAL_TIM_IC_Start_IT(&TimHandle2, TIM_CHANNEL_1);
+
+sConfig.OCMode = TIM_OCMODE_PWM1;
+sConfig.Pulse = 100 / 2;
+sConfig.OCPolarity = TIM_OCPOLARITY_HIGH;
+sConfig.OCFastMode = TIM_OCFAST_DISABLE;
+sConfig.OCNPolarity = TIM_OCNPOLARITY_HIGH;
+sConfig.OCNIdleState = TIM_OCNIDLESTATE_RESET;
+sConfig.OCIdleState = TIM_OCIDLESTATE_RESET;
+
+HAL_TIM_PWM_ConfigChannel(&TimHandle3, &sConfig, TIM_CHANNEL_1);
+HAL_TIM_PWM_Init(&TimHandle3);
+HAL_TIM_PWM_Start(&TimHandle3, TIM_CHANNEL_1);
+
+gpio.Mode = GPIO_MODE_AF_PP;
+gpio.Pin = GPIO_PIN_4;
+gpio.Pull = GPIO_NOPULL;
+gpio.Speed = GPIO_SPEED_HIGH;
+gpio.Alternate = GPIO_AF2_TIM3;
+HAL_GPIO_Init(GPIOB, &gpio);
+
+gpio.Mode = GPIO_MODE_AF_OD;
+gpio.Pin = GPIO_PIN_15;
+gpio.Pull = GPIO_NOPULL;
+gpio.Speed = GPIO_SPEED_HIGH;
+gpio.Alternate = GPIO_AF1_TIM2;
+HAL_GPIO_Init(GPIOA, &gpio);
+
+gpio2.Mode = GPIO_MODE_ANALOG;
+gpio2.Pin = GPIO_PIN_0;
+gpio2.Pull = GPIO_NOPULL;
+gpio2.Speed = GPIO_SPEED_HIGH;
+
+sADCConfig.Channel = ADC_CHANNEL_8;
+sADCConfig.Rank = 1;
+sADCConfig.SamplingTime = ADC_SAMPLETIME_3CYCLES;
+sADCConfig.Offset = 0;
+AdcHandle.Instance = ADC3;
+AdcHandle.Init.ClockPrescaler = ADC_CLOCKPRESCALER_PCLK_DIV4;
+AdcHandle.Init.Resolution = ADC_RESOLUTION_12B;
+AdcHandle.Init.ScanConvMode = DISABLE; /* Sequencer disabled (ADC conversion on only 1 channel: channel set on rank 1) */
+AdcHandle.Init.ContinuousConvMode = ENABLE; /* Continuous mode enabled to have continuous conversion  */
+AdcHandle.Init.DiscontinuousConvMode = DISABLE; /* Parameter discarded because sequencer is disabled */
+AdcHandle.Init.NbrOfDiscConversion = 0;
+AdcHandle.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE; /* Conversion start trigged at each external event */
+AdcHandle.Init.ExternalTrigConv = ADC_EXTERNALTRIGCONV_T1_CC1;
+AdcHandle.Init.DataAlign = ADC_DATAALIGN_RIGHT;
+AdcHandle.Init.NbrOfConversion = 1;
+AdcHandle.Init.DMAContinuousRequests = ENABLE;
+AdcHandle.Init.EOCSelection = DISABLE;
+//HAL_NVIC_EnableIRQ(ADC3_DMA_IRQn);
+//HAL_NVIC_SetPriority(TIM2_IRQn, 0x0F, 0x00);
+
+HAL_GPIO_Init(GPIOA, &gpio2);
+HAL_ADC_Start(&AdcHandle);
+HAL_ADC_ConfigChannel(&AdcHandle, &sADCConfig);
+}
+
 
 /**
  * @brief  System Clock Configuration

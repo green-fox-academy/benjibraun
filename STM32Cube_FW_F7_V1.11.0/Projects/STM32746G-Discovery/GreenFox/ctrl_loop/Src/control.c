@@ -1,32 +1,30 @@
 #include "control.h"
 #include <stdio.h>
 
-#define DEFAULT_P			0.1
-#define DEFAULT_PI_P		0.05
+#define DEFAULT_P			5
+#define DEFAULT_PI_P		5.05
 #define DEFAULT_PI_I		0.01
 
 void pi_init(pi_ctrler_t *ctrler)
 {
 	ctrler->i = DEFAULT_PI_I;
 	ctrler->p = DEFAULT_PI_P;
-	ctrler->ref = 0;
+	ctrler->ref = 80;
 	ctrler->sense = 0;
 	ctrler->out = 0;
 	ctrler->integr = 0;
-	ctrler->out = 0;
-	ctrler->out_max = 0;
-	ctrler->out_min = 0;
+	ctrler->out_max = 100;
+	ctrler->out_min = 50;
 }
 
 void p_init(p_ctrler_t *ctrler)
 {
 	ctrler->p = DEFAULT_P;
-	ctrler->ref = 0;
+	ctrler->ref = 80;
 	ctrler->sense = 0;
 	ctrler->out = 0;
-	ctrler->out = 0;
-	ctrler->out_max = 0;
-	ctrler->out_min = 0;
+	ctrler->out_max = 100;
+	ctrler->out_min = 50;
 }
 
 float pi_control(pi_ctrler_t *ctrler)
