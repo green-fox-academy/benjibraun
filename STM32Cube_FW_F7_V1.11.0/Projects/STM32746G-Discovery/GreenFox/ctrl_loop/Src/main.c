@@ -63,6 +63,7 @@ ADC_HandleTypeDef AdcHandle;
 ADC_ChannelConfTypeDef sADCConfig;
 p_ctrler_t ctrler;
 pi_ctrler_t ctrler_pi;
+pi_ctrler_t ctrler_pid;
 input_capture_data_t inputc;
 
 /* Private define ------------------------------------------------------------*/
@@ -89,6 +90,7 @@ void LCD_print();
  * @retval None
  */
 
+		uint16_t analog_read;
 
 int main(void) {
 	/* This project template calls firstly two functions in order to configure MPU feature
@@ -124,18 +126,17 @@ int main(void) {
 	inputc.prev = 0;
 	p_init(&ctrler);
 	pi_init(&ctrler_pi);
-
+	pid_init(&ctrler_pid);
 	/* Infinite loop */
 	while (1) {
 		char buff[100];
 		char buff2[100];
-		int ar;
-		/*
-		while (HAL_ADC_PollForConversion(&AdcHandle, 10) != HAL_OK) {
-			ar = HAL_ADC_GetValue(&AdcHandle);
-
-		}
-		*/
+		HAL_ADC_Start(&AdcHandle);
+		if (HAL_ADC_PollForConversion(&AdcHandle, 10) == HAL_OK)
+			  {
+			    // ADC conversion completed
+			analog_read = HAL_ADC_GetValue(&AdcHandle);
+			  }
 		cntr++;
 
 		LCD_print();
@@ -153,7 +154,7 @@ void LCD_print() {
 	BSP_LCD_ClearStringLine(0);
 	BSP_LCD_DisplayStringAtLine(0, (uint8_t *) buff);
 
-	sprintf(buff, "%f", ctrler_pi.out);
+	sprintf(buff, "%d", analog_read);
 	BSP_LCD_ClearStringLine(1);
 	BSP_LCD_DisplayStringAtLine(1, (uint8_t *) buff);
 
@@ -275,29 +276,32 @@ gpio2.Pin = GPIO_PIN_0;
 gpio2.Pull = GPIO_NOPULL;
 gpio2.Speed = GPIO_SPEED_HIGH;
 
-sADCConfig.Channel = ADC_CHANNEL_8;
+HAL_GPIO_Init(GPIOA, &gpio2);
+
+
+AdcHandle.Instance          		 = ADC3;
+AdcHandle.Init.ClockPrescaler        = ADC_CLOCKPRESCALER_PCLK_DIV4;
+AdcHandle.Init.Resolution            = ADC_RESOLUTION_12B;
+AdcHandle.Init.ScanConvMode          = DISABLE;                       // Sequencer disabled (ADC conversion on only 1 channel: channel set on rank 1)
+AdcHandle.Init.ContinuousConvMode    = DISABLE;                       // Continuous mode enabled to have continuous conversion
+AdcHandle.Init.DiscontinuousConvMode = DISABLE;                       // Parameter discarded because sequencer is disabled
+AdcHandle.Init.NbrOfDiscConversion   = 0;
+AdcHandle.Init.ExternalTrigConvEdge  = ADC_EXTERNALTRIGCONVEDGE_NONE; // Conversion start trigged at each external event
+AdcHandle.Init.ExternalTrigConv      = ADC_EXTERNALTRIGCONV_T1_CC1;
+AdcHandle.Init.DataAlign             = ADC_DATAALIGN_RIGHT;
+AdcHandle.Init.NbrOfConversion       = 1;
+AdcHandle.Init.DMAContinuousRequests = DISABLE;
+AdcHandle.Init.EOCSelection          = DISABLE;
+
+HAL_ADC_Init(&AdcHandle);
+
+sADCConfig.Channel = ADC_CHANNEL_0;
 sADCConfig.Rank = 1;
 sADCConfig.SamplingTime = ADC_SAMPLETIME_3CYCLES;
 sADCConfig.Offset = 0;
-AdcHandle.Instance = ADC3;
-AdcHandle.Init.ClockPrescaler = ADC_CLOCKPRESCALER_PCLK_DIV4;
-AdcHandle.Init.Resolution = ADC_RESOLUTION_12B;
-AdcHandle.Init.ScanConvMode = DISABLE; /* Sequencer disabled (ADC conversion on only 1 channel: channel set on rank 1) */
-AdcHandle.Init.ContinuousConvMode = ENABLE; /* Continuous mode enabled to have continuous conversion  */
-AdcHandle.Init.DiscontinuousConvMode = DISABLE; /* Parameter discarded because sequencer is disabled */
-AdcHandle.Init.NbrOfDiscConversion = 0;
-AdcHandle.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE; /* Conversion start trigged at each external event */
-AdcHandle.Init.ExternalTrigConv = ADC_EXTERNALTRIGCONV_T1_CC1;
-AdcHandle.Init.DataAlign = ADC_DATAALIGN_RIGHT;
-AdcHandle.Init.NbrOfConversion = 1;
-AdcHandle.Init.DMAContinuousRequests = ENABLE;
-AdcHandle.Init.EOCSelection = DISABLE;
-//HAL_NVIC_EnableIRQ(ADC3_DMA_IRQn);
-//HAL_NVIC_SetPriority(TIM2_IRQn, 0x0F, 0x00);
 
-HAL_GPIO_Init(GPIOA, &gpio2);
-HAL_ADC_Start(&AdcHandle);
 HAL_ADC_ConfigChannel(&AdcHandle, &sADCConfig);
+HAL_ADC_Start(&AdcHandle);
 }
 
 

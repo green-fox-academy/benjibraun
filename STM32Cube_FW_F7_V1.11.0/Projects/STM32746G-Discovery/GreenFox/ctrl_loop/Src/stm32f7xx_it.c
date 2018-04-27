@@ -167,12 +167,12 @@ void TIM2_IRQHandler(void)
 {
   HAL_TIM_IRQHandler(&TimHandle2);
 }
-
+/*
 void ADC3_DMA_IRQHandler(void)
 {
   HAL_DMA_IRQHandler(AdcHandle.DMA_Handle);
 }
-  
+  */
 
 /******************************************************************************/
 /*                 STM32F7xx Peripherals Interrupt Handlers                   */

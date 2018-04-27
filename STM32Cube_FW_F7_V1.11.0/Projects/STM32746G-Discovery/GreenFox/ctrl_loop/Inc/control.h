@@ -21,10 +21,26 @@ typedef struct {
 	float out;
 } p_ctrler_t;
 
+typedef struct {
+	float ref;
+	float sense;
+	float integr;
+	float deriv;
+	float lasterr;
+	float p;
+	float i;
+	float d;
+	float out_max;
+	float out_min;
+	float out;
+} pid_ctrler_t;
+
 void p_init(p_ctrler_t *ctrler);
 void pi_init(pi_ctrler_t *ctrler);
+void pid_init(pid_ctrler_t *ctrler);
 
 float p_control(p_ctrler_t *ctrler);
 float pi_control(pi_ctrler_t *ctrler);
+float pid_control(pid_ctrler_t *ctrler);
 
 #endif /* CONTROL_H */
