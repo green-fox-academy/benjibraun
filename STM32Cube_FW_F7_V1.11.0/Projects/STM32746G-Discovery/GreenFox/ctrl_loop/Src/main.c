@@ -130,14 +130,14 @@ int main(void) {
 	inputc.prev = 0;
 	p_init(&ctrler);
 	pi_init(&ctrler_pi);
-	pid_init(&ctrler_pid);
+	//pid_init(&ctrler_pid);
 	for (int i = 0; i < 10; i++) {
 		semp[i] = -1;
 	}
 
 	/* Infinite loop */
 	while (1) {
-		HAL_ADC_Start(&AdcHandle);
+		//HAL_ADC_Start(&AdcHandle);
 		avg = 0;
 		avg_cnt = 0;
 		if (HAL_ADC_PollForConversion(&AdcHandle, 10) == HAL_OK) {
@@ -307,7 +307,7 @@ AdcHandle.Instance = ADC3;
 AdcHandle.Init.ClockPrescaler = ADC_CLOCKPRESCALER_PCLK_DIV4;
 AdcHandle.Init.Resolution = ADC_RESOLUTION_12B;
 AdcHandle.Init.ScanConvMode = DISABLE;                       // Sequencer disabled (ADC conversion on only 1 channel: channel set on rank 1)
-AdcHandle.Init.ContinuousConvMode = DISABLE;                       // Continuous mode enabled to have continuous conversion
+AdcHandle.Init.ContinuousConvMode = ENABLE;                       // Continuous mode enabled to have continuous conversion
 AdcHandle.Init.DiscontinuousConvMode = DISABLE;                       // Parameter discarded because sequencer is disabled
 AdcHandle.Init.NbrOfDiscConversion = 0;
 AdcHandle.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE; // Conversion start trigged at each external event
